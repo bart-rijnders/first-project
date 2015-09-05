@@ -24,7 +24,6 @@ h3 {
 	width: 400px;
 	margin: 0 auto;
 	margin-top: 50px;
-	overflow: auto;
 }
 
 #weer-data img, #weer-data p {
@@ -44,6 +43,10 @@ h3 {
 	color: white;
 	font-weight: 700;
 	margin: 0px;
+}
+
+.clearfloat {
+	clear: both;
 }
 
 .antwoord {
