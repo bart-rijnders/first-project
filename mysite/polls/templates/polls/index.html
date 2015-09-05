@@ -1,0 +1,9 @@
+<h2>Kan ik een korte broek dragen?</h2>
+
+<p>Vandaag wordt het maximaal {{graden}}°C</p>
+<p>Er valt vandaag {{regen}}mm regen</p>
+{% if graden > 23 and regen < 5 %}
+	<p>Je kan een korte broek dragen</p>
+{% else %}
+	<p>Je kan geen korte broek dragen</p>
+{% endif %}
