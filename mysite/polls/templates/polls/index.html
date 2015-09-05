@@ -1,9 +1,22 @@
-<h2>Kan ik een korte broek dragen?</h2>
+<html>
+<head>
 
-<p>Vandaag wordt het maximaal {{graden}}°C</p>
-<p>Er valt vandaag {{regen}}mm regen</p>
+<link rel="stylesheet" type="text/css" href="static/polls/style.css" />
+
+</head>
+
+<body>
+
+<h1>Kan ik een korte broek dragen?</h1>
+<h3>Locatie: Rotterdam</h3>
+<div id='weer-data'>
+	<img src='static/polls/images/cloudy_and_sun_icon.png'>
+	<p>{{graden}}°C</p>
+</div>
 {% if graden > 23 and regen < 5 %}
-	<p>Je kan een korte broek dragen</p>
+	<p id='ja' class='antwoord'>JA</p>
 {% else %}
-	<p>Je kan geen korte broek dragen</p>
+	<p id='nee' class='antwoord'>NEE</p>
 {% endif %}
+</body>
+</html>

@@ -1,0 +1,63 @@
+body {
+	background-color: #B2DEFF;
+	font-family: 'Open Sans';
+	text-align: center;
+}
+
+h1 {
+	font-size: 64px;
+	color: white;
+	font-weight: 700;
+	text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+	margin: 0px;
+}
+
+h3 {
+	margin: 0px;
+	font-size: 24px;
+	color: white;
+	font-weight: 700;
+	text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+}
+
+#weer-data {
+	width: 400px;
+	margin: 0 auto;
+	margin-top: 50px;
+	overflow: auto;
+}
+
+#weer-data img, #weer-data p {
+	display: inline-block;
+	vertical-align: middle;
+	height: 55px;
+}
+
+#weer-data img {
+	float: left;
+}
+
+#weer-data p {
+	float: right;
+	font-size: 48px;
+	text-shadow: 1px 2px 4px rgba(0,0,0,0.5);
+	color: white;
+	font-weight: 700;
+	margin: 0px;
+}
+
+.antwoord {
+	font-size: 144px;
+	text-shadow: 1px 2px 4px rgba(0,0,0,0.5);
+	font-weight: 700;
+	line-height: 144px;
+	margin: 0px;
+}
+
+#ja {
+	color: #B6FCAA;
+}
+
+#nee {
+	color: #FCAAAA;
+}
