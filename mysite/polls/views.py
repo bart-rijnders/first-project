@@ -6,15 +6,19 @@ from .models import Question
 
 import extract_data
 
+def convertKelvin(temperature):
+	return float(temperature) - 273.15
+
 
 def index(request):
 	template = loader.get_template('polls/index.html')
-	data = extract_location_data.getGeoLocation()
+	location = extract_data.getGeoLocation()
+	weather = extract_data.getWeatherData(location)
 
 	context = RequestContext(request, {
-		'graden': 24,
+		'graden': int(convertKelvin(weather['main']['temp'])),
 		'regen': 2,
-		'Country' : data['country'],
-		'City' : data['city'],
+		'Country' : location['country'],
+		'City' : location['city'],
 	})
 	return HttpResponse(template.render(context))
