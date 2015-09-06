@@ -7,7 +7,7 @@ from .models import Question
 import extract_data
 
 def convertKelvin(temperature):
-	return float(temperature) - 273.15
+	return int(temperature) - 273
 
 
 def index(request):
@@ -16,7 +16,7 @@ def index(request):
 	weather = extract_data.getWeatherData(location)
 
 	context = RequestContext(request, {
-		'graden': int(convertKelvin(weather['main']['temp'])),
+		'graden': convertKelvin(weather['main']['temp']),
 		'regen': 2,
 		'Country' : location['country'],
 		'City' : location['city'],
