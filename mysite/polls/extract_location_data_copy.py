@@ -13,3 +13,6 @@ def getGeoLocation():
 			return "Failed to fetch geo data" # Expection handling??
 	except:
 		print "Failed to fetch geo data"		# Exception handeling
+
+
+print getGeoLocation()
