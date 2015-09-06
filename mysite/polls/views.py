@@ -4,12 +4,31 @@ from django.template import RequestContext, loader
 
 from .models import Question
 
+from urllib2 import urlopen
+from contextlib import closing
+import json
+
+def getGeoLocation():
+	api = "http://ip-api.com/json/"
+	try:
+		with closing(urlopen(api)) as response:
+			loc = json.loads(response.read())
+			if(loc["status"] == "success"):
+				return [loc["country"], loc["city"], loc["lat"], loc["lon"]]
+			else:
+				return "Failed to fetch geo data" # Expection handling??
+	except:
+		print "Failed to fetch geo data"		# Exception handeling
+
 
 def index(request):
 	template = loader.get_template('polls/index.html')
+	data = getGeoLocation()
 	context = RequestContext(request, {
 		'graden': 24,
 		'regen': 2,
+		'Country' : data[0],
+		'City' : data[1],
 
 	})
 	return HttpResponse(template.render(context))
