@@ -4,43 +4,21 @@ from django.template import RequestContext, loader
 
 from .models import Question
 
-from urllib2 import urlopen
-from contextlib import closing
-import json
+import extract_data
 
-def getGeoLocation():
-	api = "http://ip-api.com/json/"
-	try:
-		with closing(urlopen(api)) as response:
-			loc = json.loads(response.read())
-			if(loc["status"] == "success"):
-				return [loc["country"], loc["city"], loc["lat"], loc["lon"]]
-			else:
-				return "Failed to fetch geo data" # Expection handling??
-	except:
-		print "Failed to fetch geo data"		# Exception handeling
+def convertKelvin(temperature):
+	return int(temperature) - 273
 
 
 def index(request):
 	template = loader.get_template('polls/index.html')
-	data = getGeoLocation()
-	context = RequestContext(request, {
-		'graden': 24,
-		'regen': 2,
-		'Country' : data[0],
-		'City' : data[1],
+	location = extract_data.getGeoLocation()
+	weather = extract_data.getWeatherData(location)
 
+	context = RequestContext(request, {
+		'graden': convertKelvin(weather['main']['temp']),
+		'regen': 2,
+		'Country' : location['country'],
+		'City' : location['city'],
 	})
 	return HttpResponse(template.render(context))
-
-
-
-def detail(request, question_id):
-	return HttpResponse("You're looking at question %s." % question_id)
-
-def results(request, question_id):
-	response = "You're looking at the results of question %s."
-	return HttpResponse(response % question_id)
-
-def vote(request, question_id):
-	return HttpResponse("You're voting on question %s." % question_id)

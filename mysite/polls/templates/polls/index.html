@@ -11,8 +11,8 @@
 <h1>Kan ik een korte broek dragen?</h1>
 <h3>Locatie: {{City}}, {{Country}}</h3>
 <div id='weer-data'>
-	<img src='static/polls/images/cloudy_and_sun_icon.png'>
-	<p>{{graden}}°C</p>
+	<p class='pull-left'>{{regen}}mm</p>
+	<p class='pull-right'>{{graden}}°C</p>
 	<div class='clearfloat'></div>
 </div>
 {% if graden > 23 and regen < 5 %}

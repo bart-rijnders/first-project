@@ -32,13 +32,15 @@ h3 {
 	height: 55px;
 }
 
-#weer-data img {
+.pull-left {
 	float: left;
+}
+.pull-right {
+	float: right;
 }
 
 #weer-data p {
-	float: right;
-	font-size: 48px;
+	font-size: 32px;
 	text-shadow: 1px 2px 4px rgba(0,0,0,0.5);
 	color: white;
 	font-weight: 700;
