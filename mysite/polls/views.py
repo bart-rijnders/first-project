@@ -5,6 +5,7 @@ from django.template import RequestContext, loader
 from .models import Question
 
 import extract_data
+import extract_calendar
 
 def convertKelvin(temperature):
 	return int(temperature) - 273
@@ -20,5 +21,6 @@ def index(request):
 		'regen': 2,
 		'Country' : location['country'],
 		'City' : location['city'],
+		'Events': extract_calendar.get_UpcomingEvents()
 	})
 	return HttpResponse(template.render(context))
