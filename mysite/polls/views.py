@@ -15,12 +15,15 @@ def index(request):
 	template = loader.get_template('polls/index.html')
 	location = extract_data.getGeoLocation()
 	weather = extract_data.getWeatherData(location)
+	locationString = "Unknown"
+
+	if location['status'] = 'success':
+		locationString = location['city'] + ',' , location['country']
 
 	context = RequestContext(request, {
 		'graden': convertKelvin(weather['main']['temp']),
 		'regen': 2,
-		'Country' : location['country'],
-		'City' : location['city'],
-		'Events': extract_calendar.get_UpcomingEvents()
+		'location': locationString,
+		'events': extract_calendar.get_UpcomingEvents()
 	})
 	return HttpResponse(template.render(context))

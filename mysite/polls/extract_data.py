@@ -6,12 +6,9 @@ def getGeoLocation():
 	try:
 		response = urlopen(api)
 		loc = json.loads(response.read())
-		if(loc["status"] == "success"):
-			return loc
-		else:
-			return "Failed to fetch geo data" # Expection handling??
+		return loc
 	except:
-		print "Failed to fetch geo data"		# Exception handeling
+		return { 'status' : 'fail' }		# Exception handeling
 
 
 def getWeatherData(geo_data):
