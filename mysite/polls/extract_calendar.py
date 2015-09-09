@@ -6,8 +6,7 @@ import oauth2client
 from oauth2client import client
 from oauth2client import tools
 
-import datetime
-from datetime import timedelta
+from datetime import *
 
 try:
     import argparse
@@ -36,7 +35,7 @@ def get_Credentials():
     return credentials
 
 def Convert_Colour(col):
-    return {
+    return {        #cheapass switch statement
         'none' : None,
         'blue' : 1,
         'green' : 2,
@@ -61,11 +60,8 @@ def get_UpcomingEvents(start ,stop, colour):
         start = 0
         stop = 1
 
-    now = datetime.date.today() + timedelta(days=start)
-    tomorrow = now + timedelta(days=stop)
-
-    now = datetime.datetime.combine(now, datetime.datetime.min.time())
-    tomorrow = datetime.datetime.combine(tomorrow, datetime.datetime.min.time())
+    now = datetime.combine(datetime.date.today() + timedelta(days=start), datetime.min.time())
+    tomorrow = datetime.combine(datetime.date.today() + timedelta(days=stop), datetime.min.time())
     now = now.isoformat() + 'Z'
     tomorrow = tomorrow.isoformat() + 'Z'
 

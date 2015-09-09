@@ -9,16 +9,12 @@
 <body>
 
 <h1>Kan ik een korte broek dragen?</h1>
-<h3>Locatie: {{City}}, {{Country}}</h3>
+<h3>Locatie: {{location}}</h3>
 <div id='weer-data'>
 	<p class='pull-left'>{{regen}}mm</p>
 	<p class='pull-right'>{{graden}}°C</p>
 	<div class='clearfloat'></div>
 </div>
-{% if graden > 23 and regen < 5 %}
-	<p id='ja' class='antwoord'>JA</p>
-{% else %}
-	<p id='nee' class='antwoord'>NEE</p>
-{% endif %}
+	<p id='nee' class='antwoord'>{{shorts}}</p>
 </body>
 </html>
