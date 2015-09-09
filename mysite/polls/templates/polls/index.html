@@ -15,10 +15,6 @@
 	<p class='pull-right'>{{graden}}°C</p>
 	<div class='clearfloat'></div>
 </div>
-{% if graden > 23 and regen < 5 %}
-	<p id='ja' class='antwoord'>JA</p>
-{% else %}
-	<p id='nee' class='antwoord'>NEE</p>
-{% endif %}
+	<p id='nee' class='antwoord'>{{shorts}}</p>
 </body>
 </html>
