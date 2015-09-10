@@ -28,7 +28,7 @@ def index(request):
 			shorts = 'Nee'
 	else:
 		shorts = '?'
-		locationString = 'We cannot determine your location, or the weather data is down.'
+		location_string = 'We cannot determine your location, or the weather data is down.'
 		degrees = '?'
 		rain = '?'
 
