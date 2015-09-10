@@ -6,12 +6,17 @@ import oauth2client
 from oauth2client import client
 from oauth2client import tools
 
-from datetime import *
+from datetime import datetime
+from datetime import date as date
+from datetime import timedelta as delta
+
 
 try:
     import argparse
     Flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
+    Flags = None
+except:
     Flags = None
 
 Scopes = 'https://www.googleapis.com/auth/calendar.readonly'
@@ -35,7 +40,7 @@ def get_Credentials():
     return credentials
 
 def Convert_Colour(col):
-    return {        #cheapass switch statement
+    return {            #cheapass switch statement
         'none' : None,
         'blue' : 1,
         'green' : 2,
@@ -60,10 +65,8 @@ def get_UpcomingEvents(start ,stop, colour):
         start = 0
         stop = 1
 
-    now = datetime.combine(datetime.date.today() + timedelta(days=start), datetime.min.time())
-    tomorrow = datetime.combine(datetime.date.today() + timedelta(days=stop), datetime.min.time())
-    now = now.isoformat() + 'Z'
-    tomorrow = tomorrow.isoformat() + 'Z'
+    now = datetime.combine(date.today() + delta(days=start), datetime.min.time()).isoformat() + 'Z'
+    tomorrow = datetime.combine(date.today() + delta(days=stop), datetime.min.time()).isoformat() + 'Z'
 
     eventResult = service.events().list(calendarId='primary', timeMin=now, timeMax=tomorrow).execute()
     events = eventResult.get('items',[])
