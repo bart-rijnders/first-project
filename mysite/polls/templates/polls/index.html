@@ -1,21 +1,24 @@
 <html>
-	<head>
-		<title>Broekenapp</title>
-		
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="static/polls/style.css" />
+<head>
 
-	</head>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="static/polls/style.css" />
 
-	<body>
+</head>
 
-		<h1>Kan ik een korte broek dragen?</h1>
-		<h3>Locatie: {{location}}</h3>
-		<div id='weer-data'>
-			<p class='pull-left'>{{regen}}mm</p>
-			<p class='pull-right'>{{graden}}°C</p>
-			<div class='clearfloat'></div>
-		</div>
-			<p id='nee' class='antwoord'>{{shorts}}</p>
-	</body>
+<body>
+
+<h1>Kan ik een korte broek dragen?</h1>
+<h3>Locatie: {{location}}</h3>
+<div id='weer-data'>
+	<p class='pull-left'>{{regen}}mm</p>
+	<p class='pull-right'>{{graden}}°C</p>
+	<div class='clearfloat'></div>
+</div>
+{%if shorts == "Nee"%}
+	<p id='nee' class='antwoord'>{{shorts}}</p>
+{%else%}
+	<p id='ja' class='antwoord'>{{shorts}}</p>
+{%endif%}
+</body>
 </html>
