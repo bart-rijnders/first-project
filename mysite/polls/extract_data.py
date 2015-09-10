@@ -8,7 +8,7 @@ def getGeoLocation():
 		loc = json.loads(response.read())
 		return loc
 	except:
-		return { 'status' : 'fail' }		# Exception handeling
+		return None		# Exception handeling
 
 
 def getWeatherData(geo_data):
@@ -23,5 +23,3 @@ def getWeatherData(geo_data):
 			return None
 	except:
 		return None
-
-
