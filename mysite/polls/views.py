@@ -6,9 +6,6 @@ from .models import Question
 import extract_data
 import extract_calendar
 
-def convertKelvin(temperature):
-	return int(temperature) - 273
-
 
 
 def index(request):
@@ -16,11 +13,17 @@ def index(request):
 	location = extract_data.getGeoLocation()
 	weather = extract_data.getWeatherData(location)
 	appointment = extract_calendar.get_UpcomingEvents(0,1,'bold red')
-	
+
+	# Checks whether the user is signed in, to determine whether to display
+	# A sign in button on the page.
+	if appointment != None:
+		signed_in = True
+	else:
+		signed_in = False
 
 	if location and weather:
 		location_string = "%s, %s" % (location['city'], location['country'])
-		degrees = convertKelvin(weather['main']['temp'])
+		degrees = int(weather['list'][0]['temp']['day'])
 		rain = 0
 		if not appointment and degrees > 13 and rain < 5:
 			shorts = 'Ja'
@@ -38,5 +41,6 @@ def index(request):
 		'regen': rain,
 		'location' : location_string,
 		'shorts' : shorts,
+		'signed_in': signed_in
 	})
 	return HttpResponse(template.render(context))

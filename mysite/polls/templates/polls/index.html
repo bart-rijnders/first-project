@@ -4,26 +4,27 @@
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="static/polls/style.css" />
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
-		<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
+		<meta name="google-signin-client_id" content="993744878679-db27mi3qtu7bpjonmabvh3d7i44blpmh.apps.googleusercontent.com">
 	</head>
 
 	<body>
 		<h1>Kan ik een korte broek dragen?</h1>
-		<h3>Locatie: {{location}}</h3>
+		<h3>{{location}}</h3>
 		<div id='weer-data'>
 			<p class='pull-left'>{{regen}}mm</p>
 			<p class='pull-right'>{{graden}}°C</p>
 			<div class='clearfloat'></div>
 		</div>
-		{%if shorts == "Nee"%}
+		{% if shorts != "Ja" %}
 			<p id='nee' class='antwoord'>{{shorts}}</p>
-		{%else%}
+		{% else %}
 			<p id='ja' class='antwoord'>{{shorts}}</p>
-		{%endif%}
+		{% endif %}
+		{% if not signed_in %}
 		<div class='google-calender-login'>
 			<p>If you don't want to wear shorts to an appointment, sign in to Google calender</p>
 			<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		</div>
+		{% endif %}
 	</body>
 </html>

@@ -15,7 +15,8 @@ def getWeatherData(geo_data):
 	try:
 		if geo_data.get('status', 'fail') == 'success':
 			apiID = "f3f636128975d7357c795cbe7303415b"
-			api = 'http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&APPID=%s' % (geo_data['lat'],geo_data['lon'],apiID)
+			# api = 'http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&APPID=%s' % (geo_data['lat'],geo_data['lon'],apiID) OLD API CALL
+			api = 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=%s&lon=%s&cnt=10&mode=json&units=metric&APPID=%s' % (geo_data['lat'],geo_data['lon'],apiID)
 			response = urlopen(api)
 			weather = json.loads(response.read())
 			return weather
