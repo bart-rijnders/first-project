@@ -56,28 +56,30 @@ def Convert_Colour(col):
 
 
 def get_UpcomingEvents(start ,stop, colour):
-    credentials = get_Credentials()
-    http = credentials.authorize(httplib2.Http())
-    service = discovery.build('calendar', 'v3', http=http)
+    try:
+        credentials = get_Credentials()
+        http = credentials.authorize(httplib2.Http())
+        service = discovery.build('calendar', 'v3', http=http)
 
-    if stop <= start:
-        start = 0
-        stop = 1
+        if stop <= start:
+            start = 0
+            stop = 1
 
-    now = datetime.combine(date.today() + delta(days=start), datetime.min.time()).isoformat() + 'Z'
-    next = datetime.combine(date.today() + delta(days=stop), datetime.min.time()).isoformat() + 'Z'
+        now = datetime.combine(date.today() + delta(days=start), datetime.min.time()).isoformat() + 'Z'
+        next = datetime.combine(date.today() + delta(days=stop), datetime.min.time()).isoformat() + 'Z'
 
 
 
-    eventResult = service.events().list(calendarId='primary', timeMin=now, timeMax=next).execute()
-    events = eventResult.get('items',[])
+        eventResult = service.events().list(calendarId='primary', timeMin=now, timeMax=next).execute()
+        events = eventResult.get('items',[])
 
-    if not events:
-        return False
-    else:
-        colorCode = Convert_Colour(colour)
-        for i in events:
-            if dict(i).get('colorId', None) == colorCode:
-                return True
-        else:
+        if not events:
             return False
+        else:
+            colorCode = Convert_Colour(colour)
+            for i in events:
+                if dict(i).get('colorId', None) == colorCode:
+                    return True
+            else:
+                return False
+    except:
