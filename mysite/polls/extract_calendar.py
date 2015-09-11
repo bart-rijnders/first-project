@@ -83,3 +83,4 @@ def get_UpcomingEvents(start ,stop, colour):
             else:
                 return False
     except:
+        return None
